@@ -3,13 +3,13 @@ import { useStoreState } from '@/state/hooks';
 import { Redirect, Route, RouteProps } from 'react-router';
 
 export default ({ children, ...props }: Omit<RouteProps, 'render'>) => {
-    const isAuthenticated = useStoreState((state) => !!state.user.data?.uuid);
+    const isAdmin = useStoreState((state) => !!state.user.data?.rootAdmin);
 
     return (
         <Route
             {...props}
             render={({ location }) =>
-                isAuthenticated ? children : <Redirect to={{ pathname: '/auth/login', state: { from: location } }} />
+                isAdmin ? children : <Redirect to={{ pathname: '/', state: { from: location } }} />
             }
         />
     );

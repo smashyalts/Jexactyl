@@ -4,15 +4,17 @@ import { ServerContext } from '@/state/server';
 import { history } from '@/components/history';
 import Spinner from '@/components/elements/Spinner';
 import { Router, Switch, Route } from 'react-router';
+import AdminRoute from '@/components/elements/AdminRoute';
 import { NotApproved, NotFound } from '@/components/elements/ScreenBlock';
 import AuthenticatedRoute from '@/components/elements/AuthenticatedRoute';
 
 const StoreRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/StoreRouter'));
+const AdminRouter = lazy(() => import(/* webpackChunkName: "admin" */ '@/routers/AdminRouter'));
 const ServerRouter = lazy(() => import(/* webpackChunkName: "server" */ '@/routers/ServerRouter'));
 const DashboardRouter = lazy(() => import(/* webpackChunkName: "dashboard" */ '@/routers/DashboardRouter'));
 const AuthenticationRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/AuthenticationRouter'));
 
-const IndexRouter = () => {
+export default () => {
     const authenticated = useStoreState((state) => state.user?.data);
     const approved = useStoreState((state) => state.user.data?.approved);
     const enabled = useStoreState((state) => state.storefront.data!.enabled);
@@ -35,6 +37,11 @@ const IndexRouter = () => {
                         <AuthenticationRouter />
                     </Spinner.Suspense>
                 </Route>
+                <AdminRoute path={'/admin'}>
+                    <Spinner.Suspense>
+                        <AdminRouter />
+                    </Spinner.Suspense>
+                </AdminRoute>
                 <AuthenticatedRoute path={'/server/:id'}>
                     <Spinner.Suspense>
                         <ServerContext.Provider>
@@ -59,5 +66,3 @@ const IndexRouter = () => {
         </Router>
     );
 };
-
-export default IndexRouter;

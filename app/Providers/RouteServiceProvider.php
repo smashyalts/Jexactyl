@@ -40,8 +40,7 @@ class RouteServiceProvider extends ServiceProvider
                     ->group(base_path('routes/base.php'));
 
                 Route::middleware(['auth.session', RequireTwoFactorAuthentication::class, AdminAuthenticate::class])
-                    ->prefix('/admin')
-                    ->group(base_path('routes/admin.php'));
+                    ->prefix('/admin');
 
                 Route::middleware('guest')->prefix('/auth')->group(base_path('routes/auth.php'));
             });
