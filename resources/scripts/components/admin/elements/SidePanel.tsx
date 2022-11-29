@@ -56,6 +56,24 @@ export default () => {
                 <SideLink to={'settings'}>
                     <Icon.Settings size={32} />
                 </SideLink>
+                <SideLink to={'api'}>
+                    <Icon.Key size={32} />
+                </SideLink>
+                <SideLink to={'databases'}>
+                    <Icon.Database size={32} />
+                </SideLink>
+                <SideLink to={'nodes'}>
+                    <Icon.Layers size={32} />
+                </SideLink>
+                <SideLink to={'servers'}>
+                    <Icon.Server size={32} />
+                </SideLink>
+                <SideLink to={'users'}>
+                    <Icon.Users size={32} />
+                </SideLink>
+                <SideLink to={'nests'}>
+                    <Icon.Codesandbox size={32} />
+                </SideLink>
             </div>
         </PanelDiv>
     );

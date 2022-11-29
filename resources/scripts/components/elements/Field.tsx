@@ -1,3 +1,4 @@
+import tw, { styled } from 'twin.macro';
 import React, { forwardRef } from 'react';
 import Input from '@/components/elements/Input';
 import Label from '@/components/elements/Label';
@@ -46,3 +47,10 @@ const Field = forwardRef<HTMLInputElement, Props>(
 Field.displayName = 'Field';
 
 export default Field;
+
+export const FieldRow = styled.div`
+    ${tw`grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 mb-6`};
+    & > div {
+        ${tw`sm:w-full sm:flex sm:flex-col`};
+    }
+`;

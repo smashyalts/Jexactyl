@@ -5,7 +5,7 @@ import { Redirect, useLocation } from 'react-router';
 import { NotFound } from '@/components/elements/ScreenBlock';
 import SidePanel from '@/components/admin/elements/SidePanel';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import GeneralSettings from '@/components/admin/settings/GeneralSettings';
+import SettingsContainer from '@/components/admin/settings/SettingsContainer';
 
 export default () => {
     const location = useLocation();
@@ -20,7 +20,7 @@ export default () => {
                         <Overview />
                     </Route>
                     <Route path={`${path}/settings`}>
-                        <GeneralSettings />
+                        <SettingsContainer />
                     </Route>
                     <Route path={path} exact>
                         <Redirect to={`${path}/overview`} />
