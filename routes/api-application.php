@@ -5,13 +5,25 @@ use Pterodactyl\Http\Controllers\Api\Application;
 
 /*
 |--------------------------------------------------------------------------
+| Setting Controller Routes
+|--------------------------------------------------------------------------
+|
+| Endpoint: /api/application/settings
+|
+*/
+
+Route::group(['prefix' => '/settings'], function () {
+    Route::get('/', [Application\Settings\GeneralSettingsController::class, 'index'])->name('api.application.settings');
+});
+
+/*
+|--------------------------------------------------------------------------
 | User Controller Routes
 |--------------------------------------------------------------------------
 |
 | Endpoint: /api/application/users
 |
 */
-
 Route::group(['prefix' => '/users'], function () {
     Route::get('/', [Application\Users\UserController::class, 'index'])->name('api.application.users');
     Route::get('/{user:id}', [Application\Users\UserController::class, 'view'])->name('api.application.users.view');

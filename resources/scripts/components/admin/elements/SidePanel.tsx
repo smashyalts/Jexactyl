@@ -9,13 +9,14 @@ import Tooltip from '@/components/elements/tooltip/Tooltip';
 
 interface LinkProps {
     to: string;
+    exact?: boolean;
     children: React.ReactChild;
 }
 
-const SideLink = (props: LinkProps) => (
-    <NavLink to={'/admin/' + props.to} className={'navigation-link'} exact>
-        <Tooltip placement={'right'} content={props.to.charAt(0).toUpperCase() + props.to.slice(1)}>
-            <div className={'bg-gray-700 rounded-lg p-2 my-8'}>{props.children}</div>
+const SideLink = ({ to, exact, children }: LinkProps) => (
+    <NavLink to={'/admin/' + to} className={'navigation-link'} exact={exact || false}>
+        <Tooltip placement={'right'} content={to.charAt(0).toUpperCase() + to.slice(1)}>
+            <div className={'bg-gray-700 rounded-lg p-2 my-8'}>{children}</div>
         </Tooltip>
     </NavLink>
 );
@@ -50,7 +51,7 @@ export default () => {
                 <img className={'p-2'} src={logo ?? 'https://avatars.githubusercontent.com/u/91636558'} />
             </Link>
             <div>
-                <SideLink to={'overview'}>
+                <SideLink to={'overview'} exact>
                     <Icon.Home size={32} />
                 </SideLink>
                 <SideLink to={'settings'}>
