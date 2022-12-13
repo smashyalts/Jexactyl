@@ -8,16 +8,17 @@ import AdminRoute from '@/components/elements/AdminRoute';
 import { NotApproved, NotFound } from '@/components/elements/ScreenBlock';
 import AuthenticatedRoute from '@/components/elements/AuthenticatedRoute';
 
-const StoreRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/StoreRouter'));
 const AdminRouter = lazy(() => import(/* webpackChunkName: "admin" */ '@/routers/AdminRouter'));
+const StoreRouter = lazy(() => import(/* webpackChunkName: "store" */ '@/routers/StoreRouter'));
+const TicketRouter = lazy(() => import(/* webpackChunkName: "ticket" */ '@/routers/TicketRouter'));
 const ServerRouter = lazy(() => import(/* webpackChunkName: "server" */ '@/routers/ServerRouter'));
 const DashboardRouter = lazy(() => import(/* webpackChunkName: "dashboard" */ '@/routers/DashboardRouter'));
 const AuthenticationRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/AuthenticationRouter'));
 
 export default () => {
+    const store = useStoreState((state) => state.storefront.data!);
     const authenticated = useStoreState((state) => state.user?.data);
     const approved = useStoreState((state) => state.user.data?.approved);
-    const enabled = useStoreState((state) => state.storefront.data!.enabled);
     const approvals = useStoreState((state) => state.settings.data!.approvals);
 
     if (approvals && !approved && authenticated) {
@@ -49,13 +50,18 @@ export default () => {
                         </ServerContext.Provider>
                     </Spinner.Suspense>
                 </AuthenticatedRoute>
-                {enabled && (
+                {store.enabled && (
                     <AuthenticatedRoute path={'/store'}>
                         <Spinner.Suspense>
                             <StoreRouter />
                         </Spinner.Suspense>
                     </AuthenticatedRoute>
                 )}
+                <AuthenticatedRoute path={'/tickets'}>
+                    <Spinner.Suspense>
+                        <TicketRouter />
+                    </Spinner.Suspense>
+                </AuthenticatedRoute>
                 <AuthenticatedRoute path={'/'}>
                     <Spinner.Suspense>
                         <DashboardRouter />
