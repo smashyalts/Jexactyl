@@ -24,20 +24,16 @@ const CustomTextarea = styled(Textarea)`
 export default ({ open, onClose }: DialogProps) => {
     const { addError, clearFlashes } = useFlash();
 
-    const onTicketCreated = (id: string) => {
-        // @ts-expect-error this is valid
-        window.location = '/tickets/view/' + id;
-    };
-
     const submit = (values: Values, { setSubmitting, resetForm }: FormikHelpers<Values>) => {
         clearFlashes('tickets');
 
         createTicket(values.title, values.description)
-            .then((id) => {
+            .then((data) => {
                 resetForm();
                 setSubmitting(false);
 
-                onTicketCreated(id);
+                // @ts-expect-error this is valid
+                window.location = `/tickets/${data.id}`;
             })
             .catch((error) => {
                 setSubmitting(false);
@@ -54,7 +50,6 @@ export default ({ open, onClose }: DialogProps) => {
             description={
                 'This ticket will be registered under your account and accessible to all administrators on the Panel.'
             }
-            preventExternalClose
         >
             <Formik
                 onSubmit={submit}

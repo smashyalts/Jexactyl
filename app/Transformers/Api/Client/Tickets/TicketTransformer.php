@@ -19,11 +19,9 @@ class TicketTransformer extends BaseClientTransformer
      */
     public function transform(Ticket $model): array
     {
-        $staff_email = User::find($model->staff_id)->first()->email;
-
         return [
             'id' => $model->id,
-            'staff_email' => $staff_email ?? 'admin@example.net',
+            'staff_email' => User::where('id', $model->staff_id)->first()->email ?? 'system',
             'title' => $model->title,
             'status' => $model->status,
             'content' => $model->content,
