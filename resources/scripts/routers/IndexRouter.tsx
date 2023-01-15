@@ -1,19 +1,18 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { useStoreState } from '@/state/hooks';
 import { ServerContext } from '@/state/server';
 import { history } from '@/components/history';
+import StoreRouter from '@/routers/StoreRouter';
+import AdminRouter from '@/routers/AdminRouter';
+import TicketRouter from '@/routers/TicketRouter';
+import ServerRouter from '@/routers/ServerRouter';
 import Spinner from '@/components/elements/Spinner';
 import { Router, Switch, Route } from 'react-router';
+import DashboardRouter from '@/routers/DashboardRouter';
 import AdminRoute from '@/components/elements/AdminRoute';
+import AuthenticationRouter from '@/routers/AuthenticationRouter';
 import { NotApproved, NotFound } from '@/components/elements/ScreenBlock';
 import AuthenticatedRoute from '@/components/elements/AuthenticatedRoute';
-
-const AdminRouter = lazy(() => import(/* webpackChunkName: "admin" */ '@/routers/AdminRouter'));
-const StoreRouter = lazy(() => import(/* webpackChunkName: "store" */ '@/routers/StoreRouter'));
-const TicketRouter = lazy(() => import(/* webpackChunkName: "ticket" */ '@/routers/TicketRouter'));
-const ServerRouter = lazy(() => import(/* webpackChunkName: "server" */ '@/routers/ServerRouter'));
-const DashboardRouter = lazy(() => import(/* webpackChunkName: "dashboard" */ '@/routers/DashboardRouter'));
-const AuthenticationRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/AuthenticationRouter'));
 
 export default () => {
     const authenticated = useStoreState((state) => state.user?.data);

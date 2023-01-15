@@ -31,6 +31,7 @@ Route::prefix('/account')->middleware(AccountSubject::class)->group(function () 
     Route::delete('/logs', [Client\AccountLogController::class, 'delete'])->withoutMiddleware(RequireTwoFactorAuthentication::class);
 
     Route::post('/verify', [Client\AccountController::class, 'verify'])->name('api:client.account.verify');
+    Route::post('/coupon', [Client\AccountController::class, 'coupon'])->name('api:client.account.coupon');
 
     Route::put('/email', [Client\AccountController::class, 'updateEmail'])->name('api:client.account.update-email');
     Route::put('/password', [Client\AccountController::class, 'updatePassword'])->name('api:client.account.update-password');
@@ -49,8 +50,9 @@ Route::prefix('/account')->middleware(AccountSubject::class)->group(function () 
         Route::delete('/{code}', [Client\ReferralsController::class, 'delete']);
     });
 
-    Route::get('/discord', [Client\AccountController::class, 'discord'])->name('api:client.account.discord');
-    Route::get('/discord/callback', [Client\AccountController::class, 'discordCallback'])->name('api:client.account.discord.callback');
+    Route::get('/discord', [Client\DiscordController::class, 'link'])->name('api:client.account.discord');
+    Route::get('/discord/callback', [Client\DiscordController::class, 'callback'])->name('api:client.account.discord.callback');
+    Route::post('/discord/unlink', [Client\DiscordController::class, 'unlink'])->name('api:client.account.discord.unlink');
 
     Route::get('/api-keys', [Client\ApiKeyController::class, 'index']);
     Route::post('/api-keys', [Client\ApiKeyController::class, 'store']);
@@ -93,30 +95,15 @@ Route::group([
     Route::post('/eggs', [Client\Store\ServerController::class, 'eggs'])->name('api:client:store.eggs');
     Route::post('/create', [Client\Store\ServerController::class, 'store'])->name('api:client:store.create');
     Route::post('/stripe', [Client\Store\StripeController::class, 'purchase'])->name('api:client:store.stripe');
-    Route::post('/paypal', [Client\Store\PayPalController::class, 'purchase'])->name('api:client:store.paypal');
     Route::post('/resources', [Client\Store\ResourceController::class, 'purchase'])->name('api:client:store.resources');
 
     Route::group(['prefix' => '/earn', 'middleware' => 'throttle:1'], function () {
         Route::post('/', [Client\Store\ResourceController::class, 'earn'])->name('api:client:store.earn');
     });
-});
 
-/*
-|--------------------------------------------------------------------------
-| Client Control API
-|--------------------------------------------------------------------------
-|
-| Endpoint: /api/client/callback
-|
-*/
-Route::group(['prefix' => '/callback'], function () {
     Route::group(['prefix' => '/paypal'], function () {
-        Route::get('/success', [Client\Store\PayPalController::class, 'success'])->name('api.client.store.paypal.success');
-        Route::get('/cancel', [Client\Store\PayPalController::class, 'cancel'])->name('api.client.store.paypal.cancel');
-    });
-
-    Route::group(['prefix' => '/stripe'], function () {
-        Route::get('/cancel', [Client\Store\StripeController::class, 'cancel'])->name('api.client.store.stripe.cancel');
+        Route::get('/callback', [Client\Store\PayPalController::class, 'callback'])->name('api:client:store.paypal.callback');
+        Route::post('/', [Client\Store\PayPalController::class, 'purchase'])->name('api:client:store.paypal');
     });
 });
 
@@ -152,6 +139,11 @@ Route::group([
 
     Route::post('/plugins', [Client\Servers\PluginController::class, 'index'])->name('api:client:server.plugins');
     Route::post('/plugins/install/{id}', [Client\Servers\PluginController::class, 'install'])->name('api:client:server.plugins');
+
+    Route::group(['prefix' => '/analytics'], function () {
+        Route::get('/', [Client\Servers\AnalyticsController::class, 'index']);
+        Route::get('/messages', [Client\Servers\AnalyticsController::class, 'messages']);
+    });
 
     Route::group(['prefix' => '/databases'], function () {
         Route::get('/', [Client\Servers\DatabaseController::class, 'index']);
