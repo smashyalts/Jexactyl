@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import Reaptcha from 'reaptcha';
 import login from '@/api/auth/login';
 import { object, string } from 'yup';
@@ -77,13 +76,13 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Login to ' + name} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Login to ' + name} className={`w-full flex`}>
                     <Field light type={'text'} label={'Username or Email'} name={'username'} disabled={isSubmitting} />
-                    <div css={tw`mt-6`}>
+                    <div className={`mt-6`}>
                         <Field light type={'password'} label={'Password'} name={'password'} disabled={isSubmitting} />
                     </div>
-                    <div css={tw`mt-6`}>
-                        <Button type={'submit'} size={Button.Sizes.Large} css={tw`w-full`} disabled={isSubmitting}>
+                    <div className={`mt-6`}>
+                        <Button type={'submit'} size={Button.Sizes.Large} className={`w-full`} disabled={isSubmitting}>
                             Login
                         </Button>
                     </div>
@@ -102,19 +101,19 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                             }}
                         />
                     )}
-                    <div css={tw`mt-6 text-center`}>
+                    <div className={`mt-6 text-center`}>
                         <Link
                             to={'/auth/password'}
-                            css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
+                            className={`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
                             Forgot password?
                         </Link>
                     </div>
-                    <div css={tw`mt-6 text-center`}>
+                    <div className={`mt-6 text-center`}>
                         {email && (
                             <Link
                                 to={'/auth/register'}
-                                css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
+                                className={`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                             >
                                 Signup with Email
                             </Link>
@@ -122,7 +121,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                         {discord && (
                             <Link
                                 to={'/auth/discord'}
-                                css={tw`text-xs ml-6 text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
+                                className={`text-xs ml-6 text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                             >
                                 Authenticate with Discord
                             </Link>

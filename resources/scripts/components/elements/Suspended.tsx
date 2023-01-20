@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import React, { useState } from 'react';
 import useFlash from '@/plugins/useFlash';
 import { useStoreState } from '@/state/hooks';
@@ -106,16 +105,16 @@ export default () => {
                 </Dialog>
             </form>
             <PageContentBlock title={'Server Suspended'}>
-                <FlashMessageRender byKey={'server:renewal'} css={tw`mb-1`} />
-                <div css={tw`flex justify-center`}>
+                <FlashMessageRender byKey={'server:renewal'} className={`mb-1`} />
+                <div className={`flex justify-center`}>
                     <div
-                        css={tw`w-full sm:w-3/4 md:w-1/2 p-12 md:p-20 bg-neutral-900 rounded-lg shadow-lg text-center relative`}
+                        className={`w-full sm:w-3/4 md:w-1/2 p-12 md:p-20 bg-neutral-900 rounded-lg shadow-lg text-center relative`}
                     >
-                        <img src={ServerErrorSvg} css={tw`w-2/3 h-auto select-none mx-auto`} />
-                        <h2 css={tw`mt-10 font-bold text-4xl`}>Suspended</h2>
+                        <img src={ServerErrorSvg} className={`w-2/3 h-auto select-none mx-auto`} />
+                        <h2 className={`mt-10 font-bold text-4xl`}>Suspended</h2>
                         {renewable ? (
                             <>
-                                <p css={tw`text-sm my-2`}>
+                                <p className={`text-sm my-2`}>
                                     Your server has been suspended due to it not being renewed on time. Please click the
                                     &apos;Renew&apos; button in order to reactivate your server. If you want to delete
                                     your server, the resources will automatically be added back to your account so you

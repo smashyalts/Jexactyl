@@ -1,4 +1,4 @@
-import tw from 'twin.macro';
+import { Link } from 'react-router-dom';
 import useFlash from '@/plugins/useFlash';
 import Can from '@/components/elements/Can';
 import { httpErrorToHuman } from '@/api/http';
@@ -7,16 +7,12 @@ import React, { useEffect, useState } from 'react';
 import Spinner from '@/components/elements/Spinner';
 import GreyRowBox from '@/components/elements/GreyRowBox';
 import { Button } from '@/components/elements/button/index';
-import { useHistory, useRouteMatch } from 'react-router-dom';
 import ScheduleRow from '@/components/server/schedules/ScheduleRow';
 import ServerContentBlock from '@/components/elements/ServerContentBlock';
 import getServerSchedules from '@/api/server/schedules/getServerSchedules';
 import EditScheduleModal from '@/components/server/schedules/EditScheduleModal';
 
 export default () => {
-    const match = useRouteMatch();
-    const history = useHistory();
-
     const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const { clearFlashes, addError } = useFlash();
     const [loading, setLoading] = useState(true);
@@ -47,27 +43,24 @@ export default () => {
             ) : (
                 <>
                     {schedules.length === 0 ? (
-                        <p css={tw`text-sm text-center text-neutral-300`}>
+                        <p className={`text-sm text-center text-neutral-300`}>
                             There are no schedules configured for this server.
                         </p>
                     ) : (
                         schedules.map((schedule) => (
+                            // @ts-expect-error go away
                             <GreyRowBox
-                                as={'a'}
                                 key={schedule.id}
-                                href={`${match.url}/${schedule.id}`}
-                                css={tw`cursor-pointer mb-2 flex-wrap`}
-                                onClick={(e: any) => {
-                                    e.preventDefault();
-                                    history.push(`${match.url}/${schedule.id}`);
-                                }}
+                                as={Link}
+                                to={schedule.id}
+                                className={`cursor-pointer mb-2 flex-wrap`}
                             >
                                 <ScheduleRow schedule={schedule} />
                             </GreyRowBox>
                         ))
                     )}
                     <Can action={'schedule.create'}>
-                        <div css={tw`mt-8 flex justify-end`}>
+                        <div className={`mt-8 flex justify-end`}>
                             <EditScheduleModal visible={visible} onModalDismissed={() => setVisible(false)} />
                             <Button type={'button'} onClick={() => setVisible(true)}>
                                 Create schedule

@@ -72,12 +72,12 @@ export default () => {
                 This will remove resources from your account and add them to your server. Are you sure you want to
                 continue?
             </Dialog.Confirm>
-            <Container css={tw`lg:grid lg:grid-cols-3 gap-4 my-10`}>
-                <TitledGreyBox title={'Edit server CPU limit'} css={tw`mt-8 sm:mt-0`}>
+            <Container className={`lg:grid lg:grid-cols-3 gap-4 my-10`}>
+                <TitledGreyBox title={'Edit server CPU limit'} className={`mt-8 sm:mt-0`}>
                     <Wrapper>
                         <Icon.Cpu size={40} />
                         <Button.Success
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('cpu');
@@ -87,7 +87,7 @@ export default () => {
                             <Icon.Plus />
                         </Button.Success>
                         <Button.Danger
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('cpu');
@@ -97,16 +97,16 @@ export default () => {
                             <Icon.Minus />
                         </Button.Danger>
                     </Wrapper>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>
                         Change the amount of CPU assigned to the server.
                     </p>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 50%.</p>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 50%.</p>
                 </TitledGreyBox>
-                <TitledGreyBox title={'Edit server RAM limit'} css={tw`mt-8 sm:mt-0 sm:ml-8`}>
+                <TitledGreyBox title={'Edit server RAM limit'} className={`mt-8 sm:mt-0 sm:ml-8`}>
                     <Wrapper>
                         <Icon.PieChart size={40} />
                         <Button.Success
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('memory');
@@ -116,7 +116,7 @@ export default () => {
                             <Icon.Plus />
                         </Button.Success>
                         <Button.Danger
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('memory');
@@ -126,16 +126,16 @@ export default () => {
                             <Icon.Minus />
                         </Button.Danger>
                     </Wrapper>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>
                         Change the amount of RAM assigned to the server.
                     </p>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 1GB.</p>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 1GB.</p>
                 </TitledGreyBox>
-                <TitledGreyBox title={'Edit server storage limit'} css={tw`mt-8 sm:mt-0 sm:ml-8`}>
+                <TitledGreyBox title={'Edit server storage limit'} className={`mt-8 sm:mt-0 sm:ml-8`}>
                     <Wrapper>
                         <Icon.HardDrive size={40} />
                         <Button.Success
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('disk');
@@ -145,7 +145,7 @@ export default () => {
                             <Icon.Plus />
                         </Button.Success>
                         <Button.Danger
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('disk');
@@ -155,16 +155,16 @@ export default () => {
                             <Icon.Minus />
                         </Button.Danger>
                     </Wrapper>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>
                         Change the amount of storage assigned to the server.
                     </p>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 1GB.</p>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 1GB.</p>
                 </TitledGreyBox>
-                <TitledGreyBox title={'Edit server port quantity'} css={tw`mt-8 sm:mt-0`}>
+                <TitledGreyBox title={'Edit server port quantity'} className={`mt-8 sm:mt-0`}>
                     <Wrapper>
                         <Icon.Share2 size={40} />
                         <Button.Success
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('allocation_limit');
@@ -174,7 +174,7 @@ export default () => {
                             <Icon.Plus />
                         </Button.Success>
                         <Button.Danger
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('allocation_limit');
@@ -184,16 +184,16 @@ export default () => {
                             <Icon.Minus />
                         </Button.Danger>
                     </Wrapper>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>
                         Change the limit of ports assigned to the server.
                     </p>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 1.</p>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>Limit cannot be lower than 1.</p>
                 </TitledGreyBox>
-                <TitledGreyBox title={'Edit server backup limit'} css={tw`mt-8 sm:mt-0 sm:ml-8`}>
+                <TitledGreyBox title={'Edit server backup limit'} className={`mt-8 sm:mt-0 sm:ml-8`}>
                     <Wrapper>
                         <Icon.Archive size={40} />
                         <Button.Success
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('backup_limit');
@@ -203,7 +203,7 @@ export default () => {
                             <Icon.Plus />
                         </Button.Success>
                         <Button.Danger
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('backup_limit');
@@ -213,15 +213,15 @@ export default () => {
                             <Icon.Minus />
                         </Button.Danger>
                     </Wrapper>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>
                         Change the limit of backups assigned to the server.
                     </p>
                 </TitledGreyBox>
-                <TitledGreyBox title={'Edit server database limit'} css={tw`mt-8 sm:mt-0 sm:ml-8`}>
+                <TitledGreyBox title={'Edit server database limit'} className={`mt-8 sm:mt-0 sm:ml-8`}>
                     <Wrapper>
                         <Icon.Database size={40} />
                         <Button.Success
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('database_limit');
@@ -231,7 +231,7 @@ export default () => {
                             <Icon.Plus />
                         </Button.Success>
                         <Button.Danger
-                            css={tw`ml-4`}
+                            className={`ml-4`}
                             onClick={() => {
                                 setSubmitting(true);
                                 setResource('database_limit');
@@ -241,7 +241,7 @@ export default () => {
                             <Icon.Minus />
                         </Button.Danger>
                     </Wrapper>
-                    <p css={tw`mt-1 text-gray-500 text-xs flex justify-center`}>
+                    <p className={`mt-1 text-gray-500 text-xs flex justify-center`}>
                         Change the limit of databases assigned to the server.
                     </p>
                 </TitledGreyBox>

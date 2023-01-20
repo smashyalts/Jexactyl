@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { useField } from 'formik';
 import isEqual from 'react-fast-compare';
 import Input from '@/components/elements/Input';
@@ -27,7 +26,7 @@ const SelectAllPermissions: React.FC<Props> = memo(({ isEditable, permissions })
         <>
             {isEditable && (
                 <Input
-                    css={tw`mr-1`}
+                    className={`mr-1`}
                     type={'checkbox'}
                     checked={permissions.every((p) => value.includes(p))}
                     onChange={onCheckboxClicked}

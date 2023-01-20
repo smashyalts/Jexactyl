@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import React, { useState } from 'react';
 import { ApplicationStore } from '@/state';
 import { httpErrorToHuman } from '@/api/http';
@@ -49,7 +48,7 @@ export default ({ scheduleId, onDeleted }: Props) => {
                 <SpinnerOverlay visible={isLoading} />
                 All tasks will be removed and any running processes will be terminated.
             </Dialog.Confirm>
-            <Button.Danger css={tw`flex-1 sm:flex-none mr-4 border-transparent`} onClick={() => setVisible(true)}>
+            <Button.Danger className={`flex-1 sm:flex-none mr-4 border-transparent`} onClick={() => setVisible(true)}>
                 Delete
             </Button.Danger>
         </>

@@ -1,4 +1,4 @@
-import { Model, UUID } from '@/api/definitions';
+import { Model, UUID } from '@definitions/index.d';
 import { SubuserPermission } from '@/state/server/subusers';
 
 interface User extends Model {

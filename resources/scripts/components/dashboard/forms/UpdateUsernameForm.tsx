@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Yup from 'yup';
-import tw from 'twin.macro';
+
 import { ApplicationStore } from '@/state';
 import { httpErrorToHuman } from '@/api/http';
 import Field from '@/components/elements/Field';
@@ -53,9 +53,9 @@ export default () => {
             {({ isSubmitting, isValid }) => (
                 <React.Fragment>
                     <SpinnerOverlay size={'large'} visible={isSubmitting} />
-                    <Form css={tw`m-0`}>
+                    <Form className={`m-0`}>
                         <Field id={'new_username'} type={'username'} name={'username'} label={'New Username'} />
-                        <div css={tw`mt-6`}>
+                        <div className={`mt-6`}>
                             <Field
                                 id={'confirm_password'}
                                 type={'password'}
@@ -63,7 +63,7 @@ export default () => {
                                 label={'Confirm Password'}
                             />
                         </div>
-                        <div css={tw`mt-6`}>
+                        <div className={`mt-6`}>
                             <Button disabled={isSubmitting || !isValid}>Update Username</Button>
                         </div>
                     </Form>

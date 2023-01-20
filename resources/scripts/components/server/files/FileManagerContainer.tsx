@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { ip } from '@/lib/formatters';
 import { hashToPath } from '@/helpers';
 import style from './style.module.css';
@@ -82,15 +81,14 @@ export default () => {
     return (
         <ServerContentBlock title={'File Manager'} description={'Create, edit and view files.'} showFlashKey={'files'}>
             <Input onChange={searchFiles} className={'mb-4 j-up'} placeholder={'Search for files and folders...'} />
-            <div css={tw`flex flex-wrap-reverse md:flex-nowrap justify-center mb-4`}>
+            <div className={`flex flex-wrap-reverse md:flex-nowrap justify-center mb-4`}>
                 <ErrorBoundary>
-                    <div className={'j-right'}>
+                    <div className={'j-right w-full'}>
                         <FileManagerBreadcrumbs
-                            css={tw`w-full`}
                             renderLeft={
                                 <FileActionCheckbox
                                     type={'checkbox'}
-                                    css={tw`mx-4`}
+                                    className={`mx-4`}
                                     checked={selectedFilesLength === (files?.length === 0 ? -1 : files?.length)}
                                     onChange={onSelectAllClick}
                                 />
@@ -115,13 +113,13 @@ export default () => {
             ) : (
                 <>
                     {!files.length ? (
-                        <p css={tw`text-sm text-neutral-400 text-center`}>This directory seems to be empty.</p>
+                        <p className={`text-sm text-neutral-400 text-center`}>This directory seems to be empty.</p>
                     ) : (
                         <CSSTransition classNames={'fade'} timeout={150} appear in>
                             <>
                                 {files.length > 250 && (
-                                    <div css={tw`rounded bg-yellow-400 mb-px p-3`}>
-                                        <p css={tw`text-yellow-900 text-sm text-center`}>
+                                    <div className={`rounded bg-yellow-400 mb-px p-3`}>
+                                        <p className={`text-yellow-900 text-sm text-center`}>
                                             This directory is too large to display in the browser, limiting the output
                                             to the first 250 files.
                                         </p>
@@ -144,21 +142,21 @@ export default () => {
                             <Input type={'text'} value={`sftp://${ip(sftp.ip)}:${sftp.port}`} readOnly />
                         </CopyOnClick>
                     </div>
-                    <div css={tw`mt-6`}>
+                    <div className={`mt-6`}>
                         <Label>Username</Label>
                         <CopyOnClick text={`${username}.${id}`}>
                             <Input type={'text'} value={`${username}.${id}`} readOnly />
                         </CopyOnClick>
                     </div>
-                    <div css={tw`mt-6 flex items-center`}>
-                        <div css={tw`flex-1`}>
-                            <div css={tw`border-l-4 border-cyan-500 p-3`}>
-                                <p css={tw`text-xs text-neutral-200`}>
+                    <div className={`mt-6 flex items-center`}>
+                        <div className={`flex-1`}>
+                            <div className={`border-l-4 border-cyan-500 p-3`}>
+                                <p className={`text-xs text-neutral-200`}>
                                     Your SFTP password is the same as the password you use to access this panel.
                                 </p>
                             </div>
                         </div>
-                        <div css={tw`ml-4`}>
+                        <div className={`ml-4`}>
                             <a href={`sftp://${username}.${id}@${ip(sftp.ip)}:${sftp.port}`}>
                                 <Button.Text variant={Button.Variants.Secondary}>Launch SFTP</Button.Text>
                             </a>

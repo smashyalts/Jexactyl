@@ -88,10 +88,10 @@ export default ({ server, className }: { server: Server; className?: string }) =
             $status={stats?.status}
             $bg={server.bg}
         >
-            <div css={tw`flex items-center col-span-12 sm:col-span-5 lg:col-span-6`}>
+            <div className={`flex items-center col-span-12 sm:col-span-5 lg:col-span-6`}>
                 <div>
-                    <p css={tw`text-lg break-words`}>{server.name}</p>
-                    <p css={tw`text-sm text-neutral-300 break-words line-clamp-1`}>
+                    <p className={`text-lg break-words`}>{server.name}</p>
+                    <p className={`text-sm text-neutral-300 break-words line-clamp-1`}>
                         {server.allocations
                             .filter((alloc) => alloc.isDefault)
                             .map((allocation) => (
@@ -102,17 +102,17 @@ export default ({ server, className }: { server: Server; className?: string }) =
                     </p>
                 </div>
             </div>
-            <div css={tw`hidden col-span-8 lg:col-span-6 sm:flex items-baseline justify-center items-center`}>
+            <div className={`hidden col-span-8 lg:col-span-6 sm:flex items-baseline justify-center items-center`}>
                 {!stats || isSuspended ? (
                     isSuspended ? (
-                        <div css={tw`flex-1 text-center`}>
-                            <span css={tw`bg-red-500 rounded px-2 py-1 text-red-100 text-xs`}>
+                        <div className={`flex-1 text-center`}>
+                            <span className={`bg-red-500 rounded px-2 py-1 text-red-100 text-xs`}>
                                 {server.status === 'suspended' ? 'Suspended' : 'Connection Error'}
                             </span>
                         </div>
                     ) : server.isTransferring || server.status ? (
-                        <div css={tw`flex-1 text-center`}>
-                            <span css={tw`bg-neutral-500 rounded px-2 py-1 text-neutral-100 text-xs`}>
+                        <div className={`flex-1 text-center`}>
+                            <span className={`bg-neutral-500 rounded px-2 py-1 text-neutral-100 text-xs`}>
                                 {server.isTransferring
                                     ? 'Transferring'
                                     : server.status === 'installing'
@@ -127,17 +127,17 @@ export default ({ server, className }: { server: Server; className?: string }) =
                     )
                 ) : (
                     <React.Fragment>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon.Cpu size={20} css={tw`text-neutral-600`} />
+                        <div className={`flex-1 ml-4 sm:block hidden`}>
+                            <div className={`flex justify-center`}>
+                                <Icon.Cpu size={20} className={`text-neutral-600`} />
                                 <IconDescription $alarm={alarms.cpu}>
                                     {stats.cpuUsagePercent.toFixed(0)} %
                                 </IconDescription>
                             </div>
                         </div>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon.PieChart size={20} css={tw`text-neutral-600`} />
+                        <div className={`flex-1 ml-4 sm:block hidden`}>
+                            <div className={`flex justify-center`}>
+                                <Icon.PieChart size={20} className={`text-neutral-600`} />
                                 <IconDescription $alarm={alarms.memory}>
                                     {bytesToString(stats.memoryUsageInBytes)}
                                 </IconDescription>
@@ -147,31 +147,31 @@ export default ({ server, className }: { server: Server; className?: string }) =
                 )}
             </div>
             {stats && (
-                <div css={tw`hidden col-span-12 sm:flex items-baseline justify-center items-center`}>
+                <div className={`hidden col-span-12 sm:flex items-baseline justify-center items-center`}>
                     <React.Fragment>
-                        <div css={tw`flex-1 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon.HardDrive size={20} css={tw`text-neutral-600`} />
+                        <div className={`flex-1 sm:block hidden`}>
+                            <div className={`flex justify-center`}>
+                                <Icon.HardDrive size={20} className={`text-neutral-600`} />
                                 <IconDescription>{bytesToString(stats?.diskUsageInBytes)}</IconDescription>
                             </div>
                         </div>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon.Clock size={20} css={tw`text-neutral-600`} />
+                        <div className={`flex-1 ml-4 sm:block hidden`}>
+                            <div className={`flex justify-center`}>
+                                <Icon.Clock size={20} className={`text-neutral-600`} />
                                 <IconDescription>
                                     {stats.uptime > 0 ? <UptimeDuration uptime={stats.uptime / 1000} /> : 'Offline'}
                                 </IconDescription>
                             </div>
                         </div>
-                        <div css={tw`flex-1 ml-12 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon.DownloadCloud size={20} css={tw`text-neutral-600`} />
+                        <div className={`flex-1 ml-12 sm:block hidden`}>
+                            <div className={`flex justify-center`}>
+                                <Icon.DownloadCloud size={20} className={`text-neutral-600`} />
                                 <IconDescription>{bytesToString(stats?.networkRxInBytes)}</IconDescription>
                             </div>
                         </div>
-                        <div css={tw`flex-1 ml-4 sm:block hidden`}>
-                            <div css={tw`flex justify-center`}>
-                                <Icon.UploadCloud size={20} css={tw`text-neutral-600`} />
+                        <div className={`flex-1 ml-4 sm:block hidden`}>
+                            <div className={`flex justify-center`}>
+                                <Icon.UploadCloud size={20} className={`text-neutral-600`} />
                                 <IconDescription>{bytesToString(stats?.networkTxInBytes)}</IconDescription>
                             </div>
                         </div>

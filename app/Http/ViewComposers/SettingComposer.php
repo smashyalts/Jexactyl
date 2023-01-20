@@ -3,14 +3,13 @@
 namespace Pterodactyl\Http\ViewComposers;
 
 use Illuminate\View\View;
-use Pterodactyl\Services\Helpers\AssetHashService;
 
 class SettingComposer extends Composer
 {
     /**
      * AssetComposer constructor.
      */
-    public function __construct(private AssetHashService $assetHashService)
+    public function __construct()
     {
         parent::__construct();
     }
@@ -20,8 +19,6 @@ class SettingComposer extends Composer
      */
     public function compose(View $view): void
     {
-        $view->with('asset', $this->assetHashService);
-
         $view->with('siteConfiguration', [
             'name' => config('app.name') ?? 'Jexactyl',
             'locale' => config('app.locale') ?? 'en',

@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import * as Icon from 'react-feather';
 import React, { useState } from 'react';
 import Code from '@/components/elements/Code';
@@ -34,8 +33,8 @@ export default ({ name, fingerprint }: { name: string; fingerprint: string }) =>
             >
                 Removing the <Code>{name}</Code> SSH key will invalidate its usage across the Panel.
             </Dialog.Confirm>
-            <button css={tw`ml-4 p-2 text-sm`} onClick={() => setVisible(true)}>
-                <Icon.Trash css={tw`text-neutral-400 hover:text-red-400 transition-colors duration-150`} />
+            <button className={`ml-4 p-2 text-sm`} onClick={() => setVisible(true)}>
+                <Icon.Trash className={`text-neutral-400 hover:text-red-400 transition-colors duration-150`} />
             </button>
         </>
     );

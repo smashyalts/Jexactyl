@@ -21,7 +21,7 @@ const CustomTextarea = styled(Textarea)`
     ${tw`h-32`}
 `;
 
-export default ({ open, onClose }: DialogProps) => {
+export default ({ open, onClose }: DialogProps): JSX.Element => {
     const { addError, clearFlashes } = useFlash();
 
     const submit = (values: Values, { setSubmitting, resetForm }: FormikHelpers<Values>) => {

@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { ServerContext } from '@/state/server';
 import { Websocket } from '@/plugins/Websocket';
 import React, { useEffect, useState } from 'react';
@@ -106,15 +105,17 @@ export default () => {
 
     return error ? (
         <CSSTransition timeout={150} in appear classNames={'fade'}>
-            <div css={tw`bg-yellow-500`}>
-                <ContentContainer css={tw`flex items-center justify-center`}>
+            <div className={`bg-yellow-500`}>
+                <ContentContainer className={`flex items-center justify-center`}>
                     {error === 'connecting' ? (
                         <>
                             <Spinner size={'small'} />
-                            <p css={tw`ml-2 text-sm text-red-100`}>Please wait while we connect to your instance.</p>
+                            <p className={`ml-2 text-sm text-red-100`}>
+                                Please wait while we connect to your instance.
+                            </p>
                         </>
                     ) : (
-                        <p css={tw`ml-2 text-sm text-white`}>{error}</p>
+                        <p className={`ml-2 text-sm text-white`}>{error}</p>
                     )}
                 </ContentContainer>
             </div>

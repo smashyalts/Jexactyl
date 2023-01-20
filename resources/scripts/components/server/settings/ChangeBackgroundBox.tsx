@@ -1,5 +1,5 @@
 import React from 'react';
-import tw from 'twin.macro';
+
 import { object, string } from 'yup';
 import { ApplicationStore } from '@/state';
 import { httpErrorToHuman } from '@/api/http';
@@ -20,11 +20,11 @@ const ChangeBackgroundBox = () => {
     const { isSubmitting } = useFormikContext<Values>();
 
     return (
-        <TitledGreyBox title={'Change Server Background'} css={tw`relative`}>
+        <TitledGreyBox title={'Change Server Background'} className={`relative`}>
             <SpinnerOverlay visible={isSubmitting} />
-            <Form css={tw`mb-0`}>
+            <Form className={`mb-0`}>
                 <Field id={'bg'} name={'bg'} label={'Server Background'} type={'text'} />
-                <div css={tw`mt-6 text-right`}>
+                <div className={`mt-6 text-right`}>
                     <Button type={'submit'}>Save</Button>
                 </div>
             </Form>

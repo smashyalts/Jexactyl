@@ -1,5 +1,4 @@
 import useSWR from 'swr';
-import tw from 'twin.macro';
 import getServers from '@/api/getServers';
 import useFlash from '@/plugins/useFlash';
 import { useStoreState } from 'easy-peasy';
@@ -52,10 +51,10 @@ export default () => {
     }, [error]);
 
     return (
-        <PageContentBlock title={'Dashboard'} css={tw`mt-4 sm:mt-10`} showFlashKey={'dashboard'}>
+        <PageContentBlock title={'Dashboard'} className={`mt-4 sm:mt-10`} showFlashKey={'dashboard'}>
             <ResourceBar className={'my-10'} titles />
             {rootAdmin && (
-                <div css={tw`mb-10 flex justify-between items-center`}>
+                <div className={`mb-10 flex justify-between items-center`}>
                     <div>
                         <h1 className={'j-left text-5xl'}>
                             {showOnlyAdmin ? "Showing others' servers" : 'Showing your servers'}
@@ -80,12 +79,7 @@ export default () => {
                             <div className={'lg:grid lg:grid-cols-3 gap-4'}>
                                 <>
                                     {items.map((server) => (
-                                        <ServerRow
-                                            key={server.uuid}
-                                            server={server}
-                                            className={'j-up'}
-                                            css={tw`mt-2`}
-                                        />
+                                        <ServerRow key={server.uuid} server={server} className={'j-up mt-2'} />
                                     ))}
                                 </>
                             </div>

@@ -1,5 +1,6 @@
 import { v4 } from 'uuid';
 import tw from 'twin.macro';
+import classNames from 'classnames';
 import React, { useMemo } from 'react';
 import styled from 'styled-components/macro';
 import Label from '@/components/elements/Label';
@@ -50,8 +51,8 @@ const Switch = ({ name, label, description, defaultChecked, readOnly, onChange, 
     const uuid = useMemo(() => v4(), []);
 
     return (
-        <div css={tw`flex items-center`}>
-            <ToggleContainer css={tw`flex-none`}>
+        <div className={`flex items-center`}>
+            <ToggleContainer className={`flex-none`}>
                 {children || (
                     <Input
                         id={uuid}
@@ -65,13 +66,13 @@ const Switch = ({ name, label, description, defaultChecked, readOnly, onChange, 
                 <Label htmlFor={uuid} />
             </ToggleContainer>
             {(label || description) && (
-                <div css={tw`ml-4 w-full`}>
+                <div className={`ml-4 w-full`}>
                     {label && (
-                        <Label css={[tw`cursor-pointer`, !!description && tw`mb-0`]} htmlFor={uuid}>
+                        <Label className={classNames(tw`cursor-pointer`, !!description && tw`mb-0`)} htmlFor={uuid}>
                             {label}
                         </Label>
                     )}
-                    {description && <p css={tw`text-neutral-400 text-sm mt-2`}>{description}</p>}
+                    {description && <p className={`text-neutral-400 text-sm mt-2`}>{description}</p>}
                 </div>
             )}
         </div>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import tw, { TwStyle } from 'twin.macro';
 import styled from 'styled-components/macro';
 
@@ -47,19 +48,18 @@ const Container = styled.div<{ $type?: FlashMessageType }>`
 Container.displayName = 'MessageBox.Container';
 
 const MessageBox = ({ title, children, type }: Props) => (
-    <Container css={tw`lg:inline-flex`} $type={type} role={'alert'}>
+    <Container className={`lg:inline-flex`} $type={type} role={'alert'}>
         {title && (
             <span
-                className={'title'}
-                css={[
-                    tw`flex rounded-full uppercase px-2 py-1 text-xs font-bold mr-3 leading-none`,
-                    getBackground(type),
-                ]}
+                className={classNames(
+                    `title flex rounded-full uppercase px-2 py-1 text-xs font-bold mr-3 leading-none`,
+                    getBackground(type)
+                )}
             >
                 {title}
             </span>
         )}
-        <span css={tw`mr-2 text-left flex-auto`}>{children}</span>
+        <span className={`mr-2 text-left flex-auto`}>{children}</span>
     </Container>
 );
 MessageBox.displayName = 'MessageBox';

@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import * as Icon from 'react-feather';
 import React, { useState } from 'react';
 import { ApplicationStore } from '@/state';
@@ -44,7 +43,7 @@ export default ({ subuser }: { subuser: Subuser }) => {
             <button
                 type={'button'}
                 aria-label={'Delete subuser'}
-                css={tw`block text-sm p-2 text-neutral-500 hover:text-red-600 transition-colors duration-150`}
+                className={`block text-sm p-2 text-neutral-500 hover:text-red-600 transition-colors duration-150`}
                 onClick={() => setShowConfirmation(true)}
             >
                 <Icon.Trash />

@@ -51,7 +51,7 @@ const terminalProps: ITerminalOptions = {
     theme: theme,
 };
 
-export default () => {
+export default ({ className }: { className?: string }) => {
     const TERMINAL_PRELUDE = '\u001b[1m\u001b[33mJexactyl: \u001b[0m';
     const ref = useRef<HTMLDivElement>(null);
     const terminal = useMemo(() => new Terminal({ ...terminalProps }), []);
@@ -195,7 +195,7 @@ export default () => {
     }, [connected, instance]);
 
     return (
-        <div className={classNames(styles.terminal, 'relative')}>
+        <div className={classNames(styles.terminal, 'relative', className)}>
             <SpinnerOverlay visible={!connected} size={'large'} />
             <div
                 className={classNames(styles.container, styles.overflows_container, { 'rounded-b': !canSendCommands })}

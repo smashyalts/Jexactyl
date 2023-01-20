@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { ApplicationStore } from '@/state';
 import { httpErrorToHuman } from '@/api/http';
 import { ServerContext } from '@/state/server';
@@ -37,7 +36,7 @@ export default () => {
     }, []);
 
     return (
-        <TitledGreyBox title={'Reinstall Server'} css={tw`relative`}>
+        <TitledGreyBox title={'Reinstall Server'} className={`relative`}>
             <Dialog.Confirm
                 open={modalVisible}
                 title={'Confirm server reinstallation'}
@@ -48,15 +47,15 @@ export default () => {
                 Your server will be stopped and some files may be deleted or modified during this process, are you sure
                 you wish to continue?
             </Dialog.Confirm>
-            <p css={tw`text-sm`}>
+            <p className={`text-sm`}>
                 Reinstalling your server will stop it, and then re-run the installation script that initially set it
                 up.&nbsp;
-                <strong css={tw`font-medium`}>
+                <strong className={`font-medium`}>
                     Some files may be deleted or modified during this process, please back up your data before
                     continuing.
                 </strong>
             </p>
-            <div css={tw`mt-6 text-right`}>
+            <div className={`mt-6 text-right`}>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => setModalVisible(true)}>
                     Reinstall Server
                 </Button.Danger>

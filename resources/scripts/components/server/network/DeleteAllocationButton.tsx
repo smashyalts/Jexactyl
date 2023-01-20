@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import * as Icon from 'react-feather';
 import React, { useState } from 'react';
 import { ServerContext } from '@/state/server';
@@ -51,7 +50,7 @@ const DeleteAllocationButton = ({ allocation }: Props) => {
                 type={'button'}
                 onClick={() => setConfirm(true)}
             >
-                <Icon.Trash css={tw`w-3 h-auto`} />
+                <Icon.Trash className={`w-3 h-auto`} />
             </Button.Danger>
         </>
     );

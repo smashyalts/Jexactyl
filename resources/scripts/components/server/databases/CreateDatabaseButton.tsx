@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { object, string } from 'yup';
 import React, { useState } from 'react';
 import useFlash from '@/plugins/useFlash';
@@ -28,7 +27,7 @@ const schema = object().shape({
     connectionsFrom: string().matches(/^[\w\-/.%:]+$/, 'A valid host address must be provided.'),
 });
 
-export default () => {
+export default ({ className }: { className: string }) => {
     const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const { addError, clearFlashes } = useFlash();
     const [visible, setVisible] = useState(false);
@@ -68,9 +67,9 @@ export default () => {
                             setVisible(false);
                         }}
                     >
-                        <FlashMessageRender byKey={'database:create'} css={tw`mb-6`} />
-                        <h2 css={tw`text-2xl mb-6`}>Create new database</h2>
-                        <Form css={tw`m-0`}>
+                        <FlashMessageRender byKey={'database:create'} className={`mb-6`} />
+                        <h2 className={`text-2xl mb-6`}>Create new database</h2>
+                        <Form className={`m-0`}>
                             <Field
                                 type={'string'}
                                 id={'database_name'}
@@ -78,7 +77,7 @@ export default () => {
                                 label={'Database Name'}
                                 description={'A descriptive name for your database instance.'}
                             />
-                            <div css={tw`mt-6`}>
+                            <div className={`mt-6`}>
                                 <Field
                                     type={'string'}
                                     id={'connections_from'}
@@ -89,16 +88,16 @@ export default () => {
                                     }
                                 />
                             </div>
-                            <div css={tw`flex flex-wrap justify-end mt-6`}>
+                            <div className={`flex flex-wrap justify-end mt-6`}>
                                 <Button
                                     type={'button'}
                                     variant={Button.Variants.Secondary}
-                                    css={tw`w-full sm:w-auto sm:mr-2`}
+                                    className={`w-full sm:w-auto sm:mr-2`}
                                     onClick={() => setVisible(false)}
                                 >
                                     Cancel
                                 </Button>
-                                <Button css={tw`w-full mt-4 sm:w-auto sm:mt-0`} type={'submit'}>
+                                <Button className={`w-full mt-4 sm:w-auto sm:mt-0`} type={'submit'}>
                                     Create Database
                                 </Button>
                             </div>
@@ -106,7 +105,9 @@ export default () => {
                     </Modal>
                 )}
             </Formik>
-            <Button onClick={() => setVisible(true)}>New Database</Button>
+            <Button onClick={() => setVisible(true)} className={className}>
+                New Database
+            </Button>
         </>
     );
 };

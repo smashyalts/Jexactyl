@@ -1,4 +1,4 @@
-import tw from 'twin.macro';
+import type { ReactNode } from 'react';
 import React, { useEffect } from 'react';
 import { useStoreState } from '@/state/hooks';
 import { Alert } from '@/components/elements/alert';
@@ -7,6 +7,8 @@ import FlashMessageRender from '@/components/FlashMessageRender';
 import ContentContainer from '@/components/elements/ContentContainer';
 
 export interface PageContentBlockProps {
+    children?: ReactNode;
+
     title?: string;
     description?: string | null;
     className?: string;
@@ -30,14 +32,14 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({
 
     return (
         <CSSTransition timeout={150} classNames={'fade'} appear in>
-            <div css={tw`my-4`}>
+            <div className={`my-4`}>
                 <ContentContainer className={className}>
                     {alert.message && (
                         <Alert type={alert.type} className={'my-4'}>
                             {alert.message}
                         </Alert>
                     )}
-                    {showFlashKey && <FlashMessageRender byKey={showFlashKey} css={tw`my-4`} />}
+                    {showFlashKey && <FlashMessageRender byKey={showFlashKey} className={`my-4`} />}
                     {description && (
                         <div className={'my-10 j-left'}>
                             <h1 className={'text-5xl'}>{title}</h1>
@@ -46,12 +48,12 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({
                     )}
                     {children}
                 </ContentContainer>
-                <ContentContainer css={tw`text-sm text-center my-4 pb-8`}>
-                    <p css={tw`text-neutral-500 sm:float-left`}>
+                <ContentContainer className={`text-sm text-center my-4 pb-8`}>
+                    <p className={`text-neutral-500 sm:float-left`}>
                         &copy; <a href={'https://jexactyl.com'}>Jexactyl,</a> built on{' '}
                         <a href={'https://pterodactyl.io'}>Pterodactyl.</a>
                     </p>
-                    <p css={tw`text-neutral-500 sm:float-right`}>
+                    <p className={`text-neutral-500 sm:float-right`}>
                         <a href={'https://jexactyl.com'}> Site </a>
                         &bull;
                         <a href={'https://github.com/jexactyl/jexactyl'}> GitHub </a>

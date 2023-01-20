@@ -26,19 +26,18 @@ const Container = styled.div`
 
 export default () => (
     <PageContentBlock title={'Account Security'} description={'Manage account logs and authentication.'}>
-        <Container css={tw`lg:grid lg:grid-cols-3 my-10`}>
-            <div css={tw`flex-none w-full col-span-1`}>
+        <Container className={`lg:grid lg:grid-cols-3 my-10`}>
+            <div className={`flex-none w-full col-span-1`}>
                 <ContentBox className={'j-right'} title={'Update Password'} showFlashes={'account:password'}>
                     <UpdatePasswordForm />
                 </ContentBox>
-                <ContentBox className={'j-right'} title={'Setup 2FA'} css={tw`mt-8`} showFlashes={'account:2fa'}>
+                <ContentBox className={'j-right mt-8'} title={'Setup 2FA'} showFlashes={'account:2fa'}>
                     <ConfigureTwoFactorForm />
                 </ContentBox>
             </div>
             <ContentBox
-                className={'j-left'}
                 title={'Account Logs'}
-                css={tw`md:ml-8 mt-8 md:mt-0 col-span-2`}
+                className={`j-left md:ml-8 mt-8 md:mt-0 col-span-2`}
                 showFlashes={'account:logs'}
             >
                 <ActivityLogContainer />

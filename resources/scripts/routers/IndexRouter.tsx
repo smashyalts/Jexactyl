@@ -1,12 +1,12 @@
 import React from 'react';
+import { Route, Routes } from 'react-router';
 import { useStoreState } from '@/state/hooks';
 import { ServerContext } from '@/state/server';
-import { history } from '@/components/history';
 import StoreRouter from '@/routers/StoreRouter';
+import { BrowserRouter } from 'react-router-dom';
 import TicketRouter from '@/routers/TicketRouter';
 import ServerRouter from '@/routers/ServerRouter';
 import Spinner from '@/components/elements/Spinner';
-import { Router, Switch, Route } from 'react-router';
 import DashboardRouter from '@/routers/DashboardRouter';
 import AuthenticationRouter from '@/routers/AuthenticationRouter';
 import { NotApproved, NotFound } from '@/components/elements/ScreenBlock';
@@ -29,41 +29,64 @@ export default () => {
     }
 
     return (
-        <Router history={history}>
-            <Switch>
-                <Route path={'/auth'}>
-                    <Spinner.Suspense>
-                        <AuthenticationRouter />
-                    </Spinner.Suspense>
-                </Route>
-                <AuthenticatedRoute path={'/server/:id'}>
-                    <Spinner.Suspense>
-                        <ServerContext.Provider>
-                            <ServerRouter />
-                        </ServerContext.Provider>
-                    </Spinner.Suspense>
-                </AuthenticatedRoute>
-                {store && (
-                    <AuthenticatedRoute path={'/store'}>
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path={'/auth/*'}
+                    element={
                         <Spinner.Suspense>
-                            <StoreRouter />
+                            <AuthenticationRouter />
                         </Spinner.Suspense>
-                    </AuthenticatedRoute>
+                    }
+                />
+                <Route
+                    path={'/server/:id'}
+                    element={
+                        <AuthenticatedRoute>
+                            <Spinner.Suspense>
+                                <ServerContext.Provider>
+                                    <ServerRouter />
+                                </ServerContext.Provider>
+                            </Spinner.Suspense>
+                        </AuthenticatedRoute>
+                    }
+                />
+                {store && (
+                    <Route
+                        path={'/store/*'}
+                        element={
+                            <AuthenticatedRoute>
+                                <Spinner.Suspense>
+                                    <StoreRouter />
+                                </Spinner.Suspense>
+                            </AuthenticatedRoute>
+                        }
+                    />
                 )}
                 {tickets && (
-                    <AuthenticatedRoute path={'/tickets'}>
-                        <Spinner.Suspense>
-                            <TicketRouter />
-                        </Spinner.Suspense>
-                    </AuthenticatedRoute>
+                    <Route
+                        path={'/tickets/*'}
+                        element={
+                            <AuthenticatedRoute>
+                                <Spinner.Suspense>
+                                    <TicketRouter />
+                                </Spinner.Suspense>
+                            </AuthenticatedRoute>
+                        }
+                    />
                 )}
-                <AuthenticatedRoute path={'/'}>
-                    <Spinner.Suspense>
-                        <DashboardRouter />
-                    </Spinner.Suspense>
-                </AuthenticatedRoute>
-                <Route path={'*'} component={NotFound} />
-            </Switch>
-        </Router>
+                <Route
+                    path={'/*'}
+                    element={
+                        <AuthenticatedRoute>
+                            <Spinner.Suspense>
+                                <DashboardRouter />
+                            </Spinner.Suspense>
+                        </AuthenticatedRoute>
+                    }
+                />
+                <Route path={'*'} element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
     );
 };

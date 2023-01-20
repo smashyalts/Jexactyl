@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import Reaptcha from 'reaptcha';
 import { object, string } from 'yup';
 import useFlash from '@/plugins/useFlash';
@@ -81,24 +80,30 @@ const RegisterContainer = ({ history }: RouteComponentProps) => {
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Create an Account'} css={tw`w-full flex`}>
-                    <FlashMessageRender byKey={'auth:register'} css={tw`my-3`} />
-                    <Field type={'text'} label={'Username'} name={'username'} css={tw`my-3`} disabled={isSubmitting} />
+                <LoginFormContainer title={'Create an Account'} className={`w-full flex`}>
+                    <FlashMessageRender byKey={'auth:register'} className={`my-3`} />
+                    <Field
+                        type={'text'}
+                        label={'Username'}
+                        name={'username'}
+                        className={`my-3`}
+                        disabled={isSubmitting}
+                    />
                     <Field
                         type={'email'}
                         label={'Email Address'}
                         name={'email'}
-                        css={tw`my-3`}
+                        className={`my-3`}
                         disabled={isSubmitting}
                     />
                     <Field
                         type={'password'}
                         label={'Password'}
                         name={'password'}
-                        css={tw`my-3`}
+                        className={`my-3`}
                         disabled={isSubmitting}
                     />
-                    <Button type={'submit'} css={tw`my-6 w-full`} size={Button.Sizes.Large} disabled={isSubmitting}>
+                    <Button type={'submit'} className={`my-6 w-full`} size={Button.Sizes.Large} disabled={isSubmitting}>
                         Register
                     </Button>
                     {recaptchaEnabled && (
@@ -116,10 +121,10 @@ const RegisterContainer = ({ history }: RouteComponentProps) => {
                             }}
                         />
                     )}
-                    <div css={tw`text-center`}>
+                    <div className={`text-center`}>
                         <Link
                             to={'/auth/login'}
-                            css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
+                            className={`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
                             Return to login
                         </Link>

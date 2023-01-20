@@ -1,5 +1,6 @@
 import tw from 'twin.macro';
 import * as React from 'react';
+import classNames from 'classnames';
 import { breakpoint } from '@/theme';
 import styled from 'styled-components/macro';
 import { useStoreState } from '@/state/hooks';
@@ -41,8 +42,10 @@ export default () => {
                 </Alert>
             )}
             <Container
-                className={'j-up'}
-                css={[tw`lg:grid lg:grid-cols-2 gap-8 mb-10`, state?.twoFactorRedirect ? tw`mt-4` : tw`mt-10`]}
+                className={classNames(
+                    `j-up lg:grid lg:grid-cols-2 gap-8 mb-10`,
+                    state?.twoFactorRedirect ? `mt-4` : `mt-10`
+                )}
             >
                 <ContentBox title={'Update Username'} showFlashes={'account:username'}>
                     <UpdateUsernameForm />

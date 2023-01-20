@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import { join } from 'path';
 import { object, string } from 'yup';
 import useFlash from '@/plugins/useFlash';
@@ -95,13 +94,13 @@ export default ({ className }: WithClassname) => {
                             }}
                         >
                             <FlashMessageRender key={'files:pull-modal'} />
-                            <Form css={tw`m-0`}>
+                            <Form className={`m-0`}>
                                 <Field type={'text'} id={'url'} name={'url'} label={'URL'} autoFocus />
-                                <p css={tw`mt-2 text-sm md:text-base break-all`}>
-                                    <span css={tw`text-neutral-200`}>This file will be downloaded to&nbsp;</span>
+                                <p className={`mt-2 text-sm md:text-base break-all`}>
+                                    <span className={`text-neutral-200`}>This file will be downloaded to&nbsp;</span>
                                     <Code>
                                         /home/container/
-                                        <span css={tw`text-cyan-200`}>
+                                        <span className={`text-cyan-200`}>
                                             {join(
                                                 directory,
                                                 values.url.split('/')[values.url.split('/').length - 1]

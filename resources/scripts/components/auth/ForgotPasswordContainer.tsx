@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import * as React from 'react';
 import Reaptcha from 'reaptcha';
 import { object, string } from 'yup';
@@ -72,7 +71,7 @@ export default () => {
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Request Password Reset'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Request Password Reset'} className={`w-full flex`}>
                     <Field
                         light
                         label={'Email'}
@@ -82,8 +81,8 @@ export default () => {
                         name={'email'}
                         type={'email'}
                     />
-                    <div css={tw`mt-6`}>
-                        <Button size={Button.Sizes.Large} css={tw`w-full`} type={'submit'} disabled={isSubmitting}>
+                    <div className={`mt-6`}>
+                        <Button size={Button.Sizes.Large} className={`w-full`} type={'submit'} disabled={isSubmitting}>
                             Send Email
                         </Button>
                     </div>
@@ -102,10 +101,10 @@ export default () => {
                             }}
                         />
                     )}
-                    <div css={tw`mt-6 text-center`}>
+                    <div className={`mt-6 text-center`}>
                         <Link
                             to={'/auth/login'}
-                            css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
+                            className={`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                         >
                             Return to Login
                         </Link>

@@ -36,7 +36,7 @@ interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Row = ({ title, ...props }: RowProps) => (
     <StyledRow {...props}>
-        <span css={tw`ml-2`}>{title}</span>
+        <span className={`ml-2`}>{title}</span>
     </StyledRow>
 );
 
@@ -128,7 +128,7 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
             <DropdownMenu
                 ref={onClickRef}
                 renderToggle={(onClick) => (
-                    <div css={tw`px-4 py-2 hover:text-white`} onClick={onClick}>
+                    <div className={`px-4 py-2 hover:text-white`} onClick={onClick}>
                         <Icon.MoreHorizontal />
                         {modal ? (
                             modal === 'chmod' ? (

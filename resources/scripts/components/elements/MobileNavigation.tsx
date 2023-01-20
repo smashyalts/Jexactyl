@@ -61,7 +61,7 @@ export default () => {
         <Navigation>
             <SpinnerOverlay visible={isLoggingOut} />
             <div
-                css={tw`mx-auto w-full flex justify-center items-center`}
+                className={`mx-auto w-full flex justify-center items-center`}
                 style={{ maxWidth: '1200px', height: '3rem' }}
             >
                 <RightNavigation>

@@ -1,14 +1,11 @@
 import React from 'react';
-import tw from 'twin.macro';
 import '@/assets/tailwind.css';
 import { store } from '@/state';
 import { StoreProvider } from 'easy-peasy';
 import { hot } from 'react-hot-loader/root';
-import { history } from '@/components/history';
 import { SiteSettings } from '@/state/settings';
 import IndexRouter from '@/routers/IndexRouter';
 import earnCredits from '@/api/account/earnCredits';
-import { setupInterceptors } from '@/api/interceptors';
 import { StorefrontSettings } from '@/state/storefront';
 import GlobalStylesheet from '@/assets/css/GlobalStylesheet';
 
@@ -32,8 +29,6 @@ interface ExtendedWindow extends Window {
         /* eslint-enable camelcase */
     };
 }
-
-setupInterceptors(history);
 
 const App = () => {
     const { JexactylUser, SiteConfiguration, StoreConfiguration } = window as ExtendedWindow;
@@ -74,7 +69,7 @@ const App = () => {
         <>
             <GlobalStylesheet />
             <StoreProvider store={store}>
-                <div css={tw`mx-auto w-auto`}>
+                <div className={`mx-auto w-auto`}>
                     <IndexRouter />
                 </div>
             </StoreProvider>

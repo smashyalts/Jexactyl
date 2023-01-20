@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFlash from '@/plugins/useFlash';
@@ -27,17 +26,17 @@ const DiscordContainer = () => {
     };
 
     return (
-        <DiscordFormContainer css={tw`w-full flex`}>
-            <div css={tw`flex flex-col md:h-full`}>
-                <div css={tw`mt-6`}>
-                    <Button type={'button'} css={tw`w-full`} onClick={() => login()} disabled={loading}>
+        <DiscordFormContainer>
+            <div className={`flex flex-col md:h-full`}>
+                <div className={`mt-6`}>
+                    <Button type={'button'} className={`w-full`} onClick={() => login()} disabled={loading}>
                         Connect with Discord
                     </Button>
                 </div>
-                <div css={tw`mt-6 text-center`}>
+                <div className={`mt-6 text-center`}>
                     <Link
                         to={'/auth/login'}
-                        css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
+                        className={`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                     >
                         Return to login
                     </Link>

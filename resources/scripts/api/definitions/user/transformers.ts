@@ -1,4 +1,4 @@
-import * as Models from '@definitions/user/models';
+import * as Models from '@definitions/user/models.d';
 import { FractalResponseData } from '@/api/http';
 import { transform } from '@definitions/helpers';
 

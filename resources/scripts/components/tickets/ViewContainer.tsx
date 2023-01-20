@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
+import { useParams } from 'react-router';
 import useFlash from '@/plugins/useFlash';
-import { useRouteMatch } from 'react-router';
 import React, { useEffect, useState } from 'react';
 import { Alert } from '@/components/elements/alert';
 import Spinner from '@/components/elements/Spinner';
@@ -10,10 +10,15 @@ import PageContentBlock from '@/components/elements/PageContentBlock';
 import NewMessageDialog from '@/components/tickets/forms/NewMessageDialog';
 import { Ticket, getTicket, getMessages, deleteTicket, TicketMessage } from '@/api/account/tickets';
 
-export default () => {
+export default (): JSX.Element => {
+    const params = useParams<'id'>();
     const { clearFlashes } = useFlash();
-    const match = useRouteMatch<{ id: string }>();
-    const id = parseInt(match.params.id);
+
+    if (params.id === undefined) {
+        return <></>;
+    }
+
+    const id = parseInt(params.id);
 
     const [visible, setVisible] = useState(false);
     const [ticket, setTicket] = useState<Ticket>();

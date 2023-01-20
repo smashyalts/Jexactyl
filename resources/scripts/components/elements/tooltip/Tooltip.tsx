@@ -23,7 +23,7 @@ type Interaction = 'hover' | 'click' | 'focus';
 interface Props {
     rest?: number;
     delay?: number | Partial<{ open: number; close: number }>;
-    content: string | React.ReactChild;
+    content: string | JSX.Element;
     disabled?: boolean;
     arrow?: boolean;
     interactions?: Interaction[];

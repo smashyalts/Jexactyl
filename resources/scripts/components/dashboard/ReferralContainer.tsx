@@ -1,5 +1,6 @@
 import tw from 'twin.macro';
 import { format } from 'date-fns';
+import classNames from 'classnames';
 import { breakpoint } from '@/theme';
 import * as Icon from 'react-feather';
 import styled from 'styled-components/macro';
@@ -107,7 +108,7 @@ export default () => {
             showFlashKey={'referrals'}
         >
             <Container className={'j-up lg:grid lg:grid-cols-3 my-10'}>
-                <ContentBox title={'Your Referral Codes'} css={tw`sm:mt-0`}>
+                <ContentBox title={'Your Referral Codes'} className={`sm:mt-0`}>
                     <Dialog.Confirm
                         title={'Delete Referral Code'}
                         confirm={'Delete Code'}
@@ -119,24 +120,24 @@ export default () => {
                     </Dialog.Confirm>
                     <SpinnerOverlay visible={loading} />
                     {codes.length === 0 ? (
-                        <p css={tw`text-center my-2`}>{!loading && 'No referral codes exist for this account.'}</p>
+                        <p className={`text-center my-2`}>{!loading && 'No referral codes exist for this account.'}</p>
                     ) : (
                         codes.map((code, index) => (
                             <GreyRowBox
                                 key={code.code}
-                                css={[tw`bg-neutral-900 flex items-center`, index > 0 && tw`mt-2`]}
+                                className={classNames(tw`bg-neutral-900 flex items-center`, index > 0 && tw`mt-2`)}
                             >
-                                <Icon.GitBranch css={tw`text-neutral-300`} />
-                                <div css={tw`ml-4 flex-1 overflow-hidden`}>
-                                    <p css={tw`text-sm break-words`}>{code.code}</p>
-                                    <p css={tw`text-2xs text-neutral-300 uppercase`}>
+                                <Icon.GitBranch className={`text-neutral-300`} />
+                                <div className={`ml-4 flex-1 overflow-hidden`}>
+                                    <p className={`text-sm break-words`}>{code.code}</p>
+                                    <p className={`text-2xs text-neutral-300 uppercase`}>
                                         Created at:&nbsp;
                                         {code.createdAt ? format(code.createdAt, 'MMM do, yyyy HH:mm') : 'Never'}
                                     </p>
                                 </div>
-                                <button css={tw`ml-4 p-2 text-sm`} onClick={() => setCode(code.code)}>
+                                <button className={`ml-4 p-2 text-sm`} onClick={() => setCode(code.code)}>
                                     <Icon.Trash
-                                        css={tw`text-neutral-400 hover:text-red-400 transition-colors duration-150`}
+                                        className={`text-neutral-400 hover:text-red-400 transition-colors duration-150`}
                                     />
                                 </button>
                             </GreyRowBox>
@@ -146,32 +147,34 @@ export default () => {
                         Create
                     </Button>
                 </ContentBox>
-                <ContentBox title={'Available Perks'} css={tw`mt-8 sm:mt-0 sm:ml-8`}>
-                    <h1 css={tw`text-xl`}>
+                <ContentBox title={'Available Perks'} className={`mt-8 sm:mt-0 sm:ml-8`}>
+                    <h1 className={`text-xl`}>
                         You will recieve <span className={'text-green-500'}>{reward}</span> credits for every user you
                         refer to this Panel.
                     </h1>
                 </ContentBox>
-                <ContentBox title={'Users Referred'} css={tw`mt-8 sm:mt-0 sm:ml-8`}>
+                <ContentBox title={'Users Referred'} className={`mt-8 sm:mt-0 sm:ml-8`}>
                     <SpinnerOverlay visible={loading} />
                     {activity.length === 0 ? (
-                        <p css={tw`text-center my-2`}>{!loading && 'No referral activity exists for this account.'}</p>
+                        <p className={`text-center my-2`}>
+                            {!loading && 'No referral activity exists for this account.'}
+                        </p>
                     ) : (
                         activity.map((act, index) => (
                             <GreyRowBox
                                 key={act.code}
-                                css={[tw`bg-neutral-900 flex items-center`, index > 0 && tw`mt-2`]}
+                                className={classNames(tw`bg-neutral-900 flex items-center`, index > 0 && tw`mt-2`)}
                             >
-                                <Icon.GitBranch css={tw`text-neutral-300`} />
-                                <div css={tw`ml-4 flex-1 overflow-hidden`}>
-                                    <p css={tw`text-sm break-words`}>
+                                <Icon.GitBranch className={`text-neutral-300`} />
+                                <div className={`ml-4 flex-1 overflow-hidden`}>
+                                    <p className={`text-sm break-words`}>
                                         {act.userEmail} (ID: {act.userId})
                                     </p>
-                                    <p css={tw`text-2xs text-neutral-300 uppercase`}>
+                                    <p className={`text-2xs text-neutral-300 uppercase`}>
                                         Used at:&nbsp;
                                         {act.createdAt ? format(act.createdAt, 'MMM do, yyyy HH:mm') : 'Never'}
                                     </p>
-                                    <p css={tw`text-2xs text-neutral-300 uppercase`}>Code used:&nbsp;{act.code}</p>
+                                    <p className={`text-2xs text-neutral-300 uppercase`}>Code used:&nbsp;{act.code}</p>
                                 </div>
                             </GreyRowBox>
                         ))

@@ -58,7 +58,7 @@ export default () => {
     }, [progress, continuous]);
 
     return (
-        <div css={tw`w-28 fixed`} style={{ height: '2px' }}>
+        <div className={`w-28 fixed`} style={{ height: '2px' }}>
             <CSSTransition timeout={150} appear in={visible} unmountOnExit classNames={'fade'}>
                 <BarFill style={{ width: progress === undefined ? '100%' : `${progress}%` }} />
             </CSSTransition>

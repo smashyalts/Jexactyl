@@ -1,6 +1,6 @@
 import React from 'react';
 import { join } from 'path';
-import tw from 'twin.macro';
+
 import { object, string } from 'yup';
 import { ServerContext } from '@/state/server';
 import Field from '@/components/elements/Field';
@@ -48,7 +48,7 @@ export default ({ onFileNamed, onDismissed, ...props }: Props) => {
                             description={'Enter the name that this file should be saved as.'}
                             autoFocus
                         />
-                        <div css={tw`mt-6 text-right`}>
+                        <div className={`mt-6 text-right`}>
                             <Button>Create File</Button>
                         </div>
                     </Form>

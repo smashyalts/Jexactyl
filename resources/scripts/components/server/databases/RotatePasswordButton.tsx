@@ -1,5 +1,5 @@
 import React from 'react';
-import tw from 'twin.macro';
+
 import { ApplicationStore } from '@/state';
 import { httpErrorToHuman } from '@/api/http';
 import { ServerContext } from '@/state/server';
@@ -33,7 +33,7 @@ export default ({ databaseId, onUpdate }: { databaseId: string; onUpdate: (datab
     };
 
     return (
-        <Button variant={Button.Variants.Secondary} color={'primary'} css={tw`mr-2`} onClick={rotate}>
+        <Button variant={Button.Variants.Secondary} color={'primary'} className={`mr-2`} onClick={rotate}>
             Rotate Password
         </Button>
     );

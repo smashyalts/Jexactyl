@@ -1,4 +1,7 @@
+import tw from 'twin.macro';
 import classNames from 'classnames';
+import { capitalize } from '@/lib/strings';
+import styled from 'styled-components/macro';
 import { ServerContext } from '@/state/server';
 import React, { useEffect, useMemo, useState } from 'react';
 import useWebsocketEvent from '@/plugins/useWebsocketEvent';
@@ -6,12 +9,9 @@ import ConsoleShareContainer from './ConsoleShareContainer';
 import StatBlock from '@/components/server/console/StatBlock';
 import UptimeDuration from '@/components/server/UptimeDuration';
 import { bytesToString, ip, mbToBytes } from '@/lib/formatters';
+import RenewalInfo from '@/components/server/console/RenewalInfo';
 import { SocketEvent, SocketRequest } from '@/components/server/events';
 import { faClock, faHdd, faMemory, faMicrochip, faScroll, faWifi } from '@fortawesome/free-solid-svg-icons';
-import { capitalize } from '@/lib/strings';
-import styled from 'styled-components/macro';
-import tw from 'twin.macro';
-import RenewalInfo from './RenewalInfo';
 
 type Stats = Record<'memory' | 'cpu' | 'disk' | 'uptime', number>;
 
@@ -100,9 +100,9 @@ export default ({ className }: { className?: string }) => {
                     <Limit limit={textLimits.cpu}>{stats.cpu.toFixed(2)}%</Limit>
                 )}
                 {cpuUsed > 100 ? (
-                    <Bar style={{ width: '100%' }} css={tw`bg-red-500`} />
+                    <Bar style={{ width: '100%' }} className={`bg-red-500`} />
                 ) : limits.cpu === 0 ? (
-                    <Bar style={{ width: '100%' }} css={tw`bg-neutral-900`} />
+                    <Bar style={{ width: '100%' }} className={`bg-neutral-900`} />
                 ) : (
                     <Bar style={{ width: cpuUsed === undefined ? '100%' : `${cpuUsed}%` }} />
                 )}
@@ -114,9 +114,9 @@ export default ({ className }: { className?: string }) => {
                     <Limit limit={textLimits.memory}>{bytesToString(stats.memory)}</Limit>
                 )}
                 {memoryUsed > 90 ? (
-                    <Bar style={{ width: '100%' }} css={tw`bg-red-500`} />
+                    <Bar style={{ width: '100%' }} className={`bg-red-500`} />
                 ) : limits.memory === 0 ? (
-                    <Bar style={{ width: '100%' }} css={tw`bg-neutral-900`} />
+                    <Bar style={{ width: '100%' }} className={`bg-neutral-900`} />
                 ) : (
                     <Bar style={{ width: memoryUsed === undefined ? '100%' : `${memoryUsed}%` }} />
                 )}
@@ -124,9 +124,9 @@ export default ({ className }: { className?: string }) => {
             <StatBlock icon={faHdd} title={'Disk'}>
                 <Limit limit={textLimits.disk}>{bytesToString(stats.disk)}</Limit>
                 {diskUsed > 90 ? (
-                    <Bar style={{ width: '100%' }} css={tw`bg-red-500`} />
+                    <Bar style={{ width: '100%' }} className={`bg-red-500`} />
                 ) : limits.disk === 0 ? (
-                    <Bar style={{ width: '100%' }} css={tw`bg-neutral-900`} />
+                    <Bar style={{ width: '100%' }} className={`bg-neutral-900`} />
                 ) : (
                     <Bar style={{ width: diskUsed === undefined ? '100%' : `${diskUsed}%` }} />
                 )}
