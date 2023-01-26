@@ -33,7 +33,7 @@ class PluginController extends ClientApiController
         $query = $request->input('query');
 
         if (!$query) {
-            return [];
+            return new JsonResponse([], JsonResponse::HTTP_NO_CONTENT);
         }
 
         try {

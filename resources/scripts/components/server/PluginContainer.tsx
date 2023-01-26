@@ -23,7 +23,7 @@ export default () => {
     const [pluginId, setPluginId] = useState<number>(0);
     const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
 
-    const { data, error } = useSWR<Plugin>([uuid, query, '/plugins'], (uuid, query) => getPlugins(uuid, query));
+    const { data, error } = useSWR<Plugin[]>([uuid, query, '/plugins'], (uuid, query) => getPlugins(uuid, query));
 
     console.log(data);
 
@@ -53,6 +53,9 @@ export default () => {
             )
             .catch((error) => clearAndAddHttpError(error));
     };
+
+    // Remove before pushing to production
+    console.log(data);
 
     return (
         <ServerContentBlock
@@ -92,52 +95,48 @@ export default () => {
             </Dialog.Confirm>
             {!data ? null : (
                 <>
-                    {!data.plugins ? (
+                    {!data ? (
                         <p className={'j-up text-gray-400 text-center'}>Waiting for a search query to be provided...</p>
                     ) : (
                         <>
-                            {data.plugins.length < 1 ? (
-                                <p>Couldn&apos;t find any plugins.</p>
-                            ) : (
-                                <div className={'j-up lg:grid lg:grid-cols-3 p-2'}>
-                                    {data.plugins.map((plugin, key) => (
-                                        <>
-                                            <TitledGreyBox title={plugin.name} key={key} className={'m-2'}>
-                                                <div className={'lg:grid lg:grid-cols-5'}>
-                                                    <div className={'lg:col-span-4'}>
-                                                        <p className={'text-sm line-clamp-1'}>{plugin.tag}</p>
-                                                        <p className={'text-xs text-gray-400'}>
-                                                            {`https://api.spiget.org/v2/resources/${plugin.id}/go`}
-                                                        </p>
-                                                    </div>
-                                                    <div>
-                                                        {plugin.premium ? (
-                                                            <Button.Text className={'m-1'} disabled>
-                                                                <Icon.DownloadCloud size={18} />
-                                                            </Button.Text>
-                                                        ) : (
-                                                            <Button
-                                                                className={'m-1'}
-                                                                onClick={() => {
-                                                                    setPluginId(plugin.id);
-                                                                    setOpen(true);
-                                                                }}
-                                                            >
-                                                                <Icon.DownloadCloud size={18} />
-                                                            </Button>
-                                                        )}
-                                                        <a href={`https://api.spiget.org/v2/resources/${plugin.id}/go`}>
-                                                            <Button className={'m-1'}>
-                                                                <Icon.ExternalLink size={18} />
-                                                            </Button>
-                                                        </a>
-                                                    </div>
+                            <div className={'j-up lg:grid lg:grid-cols-3 p-2'}>
+                                {data.map((plugin, key) => (
+                                    <>
+                                        <TitledGreyBox title={plugin.name} key={key} className={'m-2'}>
+                                            <div className={'lg:grid lg:grid-cols-5'}>
+                                                <div className={'lg:col-span-4'}>
+                                                    <p className={'text-sm line-clamp-1'}>{plugin.tag}</p>
+                                                    <p className={'text-xs text-gray-400'}>
+                                                        {`https://api.spiget.org/v2/resources/${plugin.id}/go`}
+                                                    </p>
                                                 </div>
-                                            </TitledGreyBox>
-                                        </>
-                                    ))}
-                                </div>
-                            )}
+                                                <div>
+                                                    {plugin.premium ? (
+                                                        <Button.Text className={'m-1'} disabled>
+                                                            <Icon.DownloadCloud size={18} />
+                                                        </Button.Text>
+                                                    ) : (
+                                                        <Button
+                                                            className={'m-1'}
+                                                            onClick={() => {
+                                                                setPluginId(plugin.id);
+                                                                setOpen(true);
+                                                            }}
+                                                        >
+                                                            <Icon.DownloadCloud size={18} />
+                                                        </Button>
+                                                    )}
+                                                    <a href={`https://api.spiget.org/v2/resources/${plugin.id}/go`}>
+                                                        <Button className={'m-1'}>
+                                                            <Icon.ExternalLink size={18} />
+                                                        </Button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </TitledGreyBox>
+                                    </>
+                                ))}
+                            </div>
                         </>
                     )}
                 </>
